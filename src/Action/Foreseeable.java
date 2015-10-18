@@ -1,3 +1,5 @@
+package Action;
+
 
 public class Foreseeable extends Action {
 	
@@ -29,6 +31,12 @@ public class Foreseeable extends Action {
 	@Override
 	public boolean isFinished() {
 		return remainingTime <= 0;
+	}
+
+	@Override
+	protected Action createAction(int timeToEnd) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

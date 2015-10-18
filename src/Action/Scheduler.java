@@ -1,5 +1,6 @@
+package Action;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Scheduler extends Action{	
 	
@@ -8,11 +9,6 @@ public class Scheduler extends Action{
 	
 	protected final ArrayList<Action> actions = new ArrayList<Action>();
 
-
-	public public Scheduler() {
-		
-	}
-	
 	
 	@Override
 	public boolean isReady() {
@@ -53,6 +49,13 @@ public class Scheduler extends Action{
 		} else {
 			actions.add(subAction);
 		}
+	}
+
+
+	@Override
+	protected Action createAction(int timeToEnd) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
