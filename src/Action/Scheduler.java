@@ -2,43 +2,39 @@ package Action;
 
 import java.util.ArrayList;
 
-public class Scheduler extends Action{	
-	
+public class Scheduler extends Action {
+
 	protected boolean isInitialized = false;
 	protected boolean isReady = true;
-	
+
 	protected final ArrayList<Action> actions = new ArrayList<Action>();
 
-	
 	@Override
 	public boolean isReady() {
 		return isInitialized && isReady;
 	}
-	
-	
-	public void doStep(){
-		
+
+	public void doStep() {
+
 		this.isReady = false;
 		Action nextAction = actions.get(0);
 		nextAction.doStep();
-		if(nextAction.isFinished())
+		if (nextAction.isFinished())
 			actions.remove(0);
-				
+
 	}
 
-
-	
 	public boolean isInProgress() {
-		
-		return isInitialized && !isReady() && ! isFinished();
-	}
 
+		return isInitialized && !isReady() && !isFinished();
+	}
 
 	@Override
 	public boolean isFinished() {
-		
-		return isInitialized && ! isReady() && actions.isEmpty();
+
+		return isInitialized && !isReady() && actions.isEmpty();
 	}
+
 	public void addAction(Action subAction) {
 		isInitialized = true;
 		if (subAction.isFinished()) {
@@ -51,14 +47,10 @@ public class Scheduler extends Action{
 		}
 	}
 
-
 	@Override
-	protected Action createAction(int timeToEnd) {
-		// TODO Auto-generated method stub
-		return null;
+	public Action createAction() {
+		
+		return new Scheduler();
 	}
-
-	
-
 
 }

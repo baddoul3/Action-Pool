@@ -12,7 +12,9 @@ public abstract class Action {
 	public abstract boolean isInProgress();
 
 	public abstract boolean isFinished();
+	
+	public abstract Action createAction();
 
-	protected abstract Action createAction(int timeToEnd);
+	//protected abstract Action createAction(int timeToEnd);
 
 }

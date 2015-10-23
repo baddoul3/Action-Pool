@@ -5,6 +5,7 @@ public class Foreseeable extends Action {
 	
 	protected final int totalTime;
 	protected int remainingTime;
+	protected int timeToEnd;
 
 	public Foreseeable(int timeToEnd) {
 		this.totalTime = timeToEnd;
@@ -34,9 +35,10 @@ public class Foreseeable extends Action {
 	}
 
 	@Override
-	protected Action createAction(int timeToEnd) {
-		// TODO Auto-generated method stub
-		return null;
+	public Action createAction() {
+		
+		return new Foreseeable(timeToEnd);
 	}
+
 
 }
