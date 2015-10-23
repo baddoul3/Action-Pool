@@ -7,31 +7,21 @@ import org.junit.Test;
 public  abstract class ActionTest {
 	
 	public abstract Action createAction() ;
+	@Test
+	protected void onlyOneValidStateAtEachMoment(Action action) {
+		assertTrue(action.isReady());
+		assertFalse(action.isInProgress());
+		assertFalse(action.isFinished());
+		while (!action.isFinished()) {
+		action.doStep();
+		assertFalse(action.isReady());
+		// isFinished xor isInProgress
+		assertTrue(action.isFinished() == !action.isInProgress());
+		}
+		assertFalse(action.isReady());
+		assertFalse(action.isInProgress());
+		assertTrue(action.isFinished());
+		}
 	
 	
-	
-	public void onlyOneValidStateAtEachMoment() {
-		Action scheduler = createAction();
-		scheduler.addAction(createAction());
-		onlyOneValidStateAtEachMoment(scheduler);
-	}
-	public void schedulerWithScheduler() {
-		Action action1 = createAction(2);
-		Action subScheduler = createAction(0);
-		Action scheduler = createAction(0);
-		subScheduler.addAction(action1);
-		scheduler.addAction(subScheduler);
-		assertTrue(action1.isReady());
-		assertTrue(subScheduler.isReady());
-		scheduler.doStep();
-		assertTrue(action1.isInProgress());
-		assertTrue(subScheduler.isInProgress());
-		scheduler.doStep();
-		assertTrue(action1.isFinished());
-		assertTrue(subScheduler.isFinished());
-	}
-
-	
-
-
 }

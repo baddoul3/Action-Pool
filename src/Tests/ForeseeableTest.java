@@ -12,9 +12,10 @@ public class ForeseeableTest extends ActionTest{
 	
 	@Test
 	public void foreseeableAction() {
-	Action action = new Foreseeable(2);
+	Foreseeable action =  this.createAction();
 	// 2 steps remaining
-	action.get
+	
+	action.getTotalTime();
 	assertTrue(action.isReady());
 	assertFalse(action.isInProgress());
 	assertFalse(action.isFinished());
@@ -29,8 +30,12 @@ public class ForeseeableTest extends ActionTest{
 	assertFalse(action.isInProgress());
 	assertTrue(action.isFinished());
 	}
+	@Test
+	public void onlyOneValidStateAtEachMomentForForeseebleAction() {
+	onlyOneValidStateAtEachMoment(this.createAction());
+	}
 	
-	public  Action createAction() {
+	public  Foreseeable createAction() {
 		return new Foreseeable(2);
 		
 	}
