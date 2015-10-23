@@ -6,7 +6,19 @@ import org.junit.Test;
 
 public  abstract class ActionTest {
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public abstract Action createAction() ;
+	
 	@Test
 	protected void onlyOneValidStateAtEachMoment(Action action) {
 		assertTrue(action.isReady());
