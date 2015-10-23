@@ -34,11 +34,18 @@ public class Foreseeable extends Action {
 		return remainingTime <= 0;
 	}
 
-	@Override
-	public Action createAction() {
-		
-		return new Foreseeable(timeToEnd);
+	public int getTotalTime() {
+		return totalTime;
 	}
+
+	public int getRemainingTime() {
+		return remainingTime;
+	}
+
+	public int getTimeToEnd() {
+		return timeToEnd;
+	}
+
 
 
 }
