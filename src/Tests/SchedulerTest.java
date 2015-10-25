@@ -1,68 +1,51 @@
-package Tests;
+package Action;
 
-import static org.junit.Assert.*;
+import java.util.ArrayList;
 
-import org.junit.Before;
-import org.junit.Test;
+public class Scheduler extends Action {
 
-import Action.*;
+	protected boolean isInitialized;
+	protected boolean isReady;
 
-public class SchedulerTest extends ActionTest {
-
+	protected final ArrayList<Scheduler> actions;
 	
-	
-	@Override
-	public Scheduler createAction() {
-
-		return new Scheduler();
+	public Scheduler(){
+		this.isReady=true;
+		this.isInitialized=false;
+		actions = new ArrayList<Scheduler>();
 	}
 
-	@Test
-	public void schedulerTest() {
-		Scheduler scheduler = createAction();
-		/*Foreseeable action1 = createAction(2);
-		Foreseeable action2 = createAction(1);
-
-		scheduler.addAction(action1);
-		scheduler.addAction(action2);
-		assertTrue(action1.isReady());
-		assertTrue(action2.isReady());
-		scheduler.doStep();
-		assertTrue(action1.isInProgress());
-		assertTrue(action2.isReady());
-		scheduler.doStep();
-		assertTrue(action1.isFinished());
-		assertTrue(action2.isReady());
-		scheduler.doStep();
-		assertTrue(action1.isFinished());
-		assertTrue(action2.isFinished());*/
+	public boolean isReady() {
+		return isInitialized && isReady;
 	}
 
-	public void onlyOneValidStateAtEachMomentForScheduler() {
-		/*Scheduler scheduler = createAction();
-		scheduler.addAction(createAction(1));
-		this.onlyOneValidStateAtEachMoment(scheduler);*/
+	public void doStep() {
+		this.isReady = false;
+		Scheduler nextAction = actions.get(0);
+		//nextAction.doStep();
+		if (nextAction.isFinished())
+			actions.remove(0);
 	}
 
-	public void schedulerWithScheduler() {
-		/*Foreseeable action1 = createAction(2);
-		Scheduler subScheduler = createAction();
-		Scheduler scheduler = createAction();
-		subScheduler.addAction(action1);
-		scheduler.addAction(subScheduler);
-		assertTrue(action1.isReady());
-		assertTrue(subScheduler.isReady());
-		scheduler.doStep();
-		assertTrue(action1.isInProgress());
-		assertTrue(subScheduler.isInProgress());
-		scheduler.doStep();
-		assertTrue(action1.isFinished());
-		assertTrue(subScheduler.isFinished());*/
+	public boolean isInProgress() {
+		return isInitialized && !isReady() && !isFinished();
 	}
 
-	public Foreseeable createAction(int a) {
-
-		return new Foreseeable(a);
+	public boolean isFinished() {
+		return isInitialized && !isReady() && actions.isEmpty();
 	}
+
+	public void addAction(Scheduler subAction) {
+		isInitialized = true;
+		if (subAction.isFinished()) {
+			throw new IllegalArgumentException("Can’t add an already finished action");
+		}
+		if (isFinished()) {
+			throw new IllegalStateException("You can’t add an action to a finished scheduler");
+		} else {
+			actions.add(subAction);
+		}
+	}
+
 
 }
