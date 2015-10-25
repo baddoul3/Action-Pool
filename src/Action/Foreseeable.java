@@ -1,6 +1,5 @@
 package Action;
 
-
 public class Foreseeable extends Action {
 	
 	protected final int totalTime;
@@ -12,24 +11,18 @@ public class Foreseeable extends Action {
 		this.remainingTime = timeToEnd;
 	}
 
-	@Override
 	public boolean isReady() {
-
 		return remainingTime == totalTime;
 	}
 
-	@Override
 	public void doStep() {
 		remainingTime--;
-
 	}
 
-	@Override
 	public boolean isInProgress() {
 		return !isReady() && !isFinished();
 	}
 
-	@Override
 	public boolean isFinished() {
 		return remainingTime <= 0;
 	}
@@ -37,15 +30,5 @@ public class Foreseeable extends Action {
 	public int getTotalTime() {
 		return totalTime;
 	}
-
-	public int getRemainingTime() {
-		return remainingTime;
-	}
-
-	public int getTimeToEnd() {
-		return timeToEnd;
-	}
-
-
 
 }
