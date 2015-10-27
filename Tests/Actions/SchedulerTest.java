@@ -1,4 +1,4 @@
-package Tests;
+package Actions;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;

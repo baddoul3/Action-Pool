@@ -15,7 +15,6 @@ public abstract class Action {
 
 	public abstract boolean isFinished();
 	
-	public abstract Action createAction();
 
    
 }

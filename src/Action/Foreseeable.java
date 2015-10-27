@@ -46,11 +46,7 @@ public class Foreseeable extends Action {
 		return timeToEnd;
 	}
 
-	@Override
-	public Action createAction() {
-		
-		return new Foreseeable( timeToEnd);
-	}
+	
 
 	public void setRemainingTime(int remainingTime) {
 		this.remainingTime = remainingTime;
