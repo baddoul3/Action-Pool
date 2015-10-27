@@ -47,5 +47,11 @@ public class Scheduler extends Action {
 		}
 	}
 
+	@Override
+	public Scheduler createAction() {
+		
+		return new Scheduler();
+	}
+
 
 }
