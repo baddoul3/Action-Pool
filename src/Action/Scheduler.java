@@ -2,13 +2,15 @@ package Action;
 
 import java.util.ArrayList;
 
-public class Scheduler extends Action {
+public  class  Scheduler extends Action {
 
 	protected boolean isInitialized = false;
 	protected boolean isReady = true;
+	protected Action currentAction;
+	protected Action nextAction;
 
 	protected final ArrayList<Action> actions = new ArrayList<Action>();
-
+	
 	@Override
 	public boolean isReady() {
 		return isInitialized && isReady;
@@ -46,6 +48,15 @@ public class Scheduler extends Action {
 			actions.add(subAction);
 		}
 	}
+
+	public boolean isInitialized() {
+		return isInitialized;
+	}
+
+	public Action getCurrentAction(){
+		 
+		 return this.actions.get(0);
+	 }
 
 	
 
