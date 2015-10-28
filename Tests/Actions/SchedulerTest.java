@@ -22,7 +22,7 @@ public class SchedulerTest extends ActionTest {
 		action1.setTimeToEnd(2);
 		action2 = mock(Foreseeable.class);
 		action1.setTimeToEnd(1);
-		scheduler =mock(Scheduler.class);
+		scheduler =this.createAction();
 	}
 
 	@Test
@@ -46,9 +46,9 @@ public class SchedulerTest extends ActionTest {
 
 		scheduler.doStep();
 		when(action1.isFinished()).thenReturn(true);
-		when(action2.isReady()).thenReturn(true);
+		when(action2.isInProgress()).thenReturn(true);
 		assertTrue(action1.isFinished());
-		assertTrue(action2.isReady());
+		assertTrue(action2.isInProgress());
 
 		scheduler.doStep();
 		when(action1.isFinished()).thenReturn(true);

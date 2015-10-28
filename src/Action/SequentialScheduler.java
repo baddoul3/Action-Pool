@@ -1,20 +1,16 @@
 package Action;
 
+public class SequentialScheduler extends Scheduler {
 
-public class SequentialScheduler  extends Scheduler{
-	
-	
-	public Action getNextAction(){	 
-		 
-		 if(!this.actions.get(0).isFinished())
-		    	 return this.getCurrentAction();
-		 else
-			 
-		 return this.actions.get(this.actions.indexOf(getCurrentAction())+1);
-				 
-				 
-				 }
-	 
-	 
-	
+	public void sequentielStep() {
+
+		this.isReady = false;
+		currentAction = actions.get(0);
+		
+		currentAction.doStep();
+		if (currentAction.isFinished())
+			actions.remove(0);
+			
+	}
+
 }
