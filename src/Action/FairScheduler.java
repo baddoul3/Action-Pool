@@ -1,25 +1,33 @@
 package Action;
 
 public class FairScheduler extends Scheduler {
-
+	
+	static int indexAction = 0;
 	public Action getNextAction() {
 
 		return this.actions.get(this.actions.indexOf(getCurrentAction()) + 1);
 
 	}
 
-	
-	public void doStepFairScheduler() {
+	@Override
+	public void doStep() {
 		
-		this.currentAction.doStep();
-		this.currentAction = this.actions.get(0);
-		
-		this.currentAction.doStep();
-		this.getCurrentAction().doStep();		
 		this.isReady = false;
+		if(indexAction < actions.size())
+		{
+			Action nextAction = actions.get(indexAction);
+			nextAction.doStep();
+			
+			if(nextAction.isFinished())
+				actions.remove(indexAction);
+			
+			if(indexAction ==  actions.size()-1)
+				indexAction = 0;
 		
-		if (this.currentAction.isFinished())
-			this.actions.remove(0);
+			else
+				indexAction++;
+			
+		}
 
 	}
 

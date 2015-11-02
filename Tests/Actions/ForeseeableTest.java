@@ -1,17 +1,30 @@
 package Actions;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import Action.*;
-
+@RunWith(MockitoJUnitRunner.class)
 public class ForeseeableTest extends ActionTest {
+	
+	Foreseeable action;	
+	
+
+	@Before
+	public void setup() {
+		action = this.createAction();
+
+	}
 
 	@Test
 	public void foreseeableAction() {
-		Foreseeable action = this.createAction();
-
+		
 		// 2 steps remaining
 
 		action.getTotalTime();
@@ -36,7 +49,7 @@ public class ForeseeableTest extends ActionTest {
 	}
 
 	public Foreseeable createAction() {
-		return new Foreseeable(2);
+		return mock(Foreseeable.class);
 
 	}
 

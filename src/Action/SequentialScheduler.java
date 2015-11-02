@@ -2,7 +2,8 @@ package Action;
 
 public class SequentialScheduler extends Scheduler {
 
-	public void sequentielStep() {
+	@Override
+	public void doStep() {
 
 		this.isReady = false;
 		currentAction = actions.get(0);
