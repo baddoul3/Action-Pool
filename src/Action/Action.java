@@ -14,6 +14,5 @@ public abstract class Action {
 	public  int getTimeToEnd(){
 		return timeToEnd;
 	}
-	//protected abstract Action createAction(int timeToEnd);
    
 }
