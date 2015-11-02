@@ -56,13 +56,12 @@ public class FaireSchedulerTest extends SchedulerTest{
 		fairScheduler.doStep();
 		
 		assertTrue(fairScheduler.isInProgress());	
-		//when(action1.isFinished()).thenReturn(true);				
-		//assertTrue(action1.isFinished());
-		action2
-		
+		when(action1.isFinished()).thenReturn(true);				
+		assertTrue(action1.isFinished());
+		//System.out.println(fairScheduler.getActions().size());
 		fairScheduler.doStep();
-		
-		
+		fairScheduler.getActions().remove(0);
+		fairScheduler.getActions().remove(0);
 		assertTrue(fairScheduler.isFinished());
 	}
 

@@ -4,9 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import Action.*;
 
@@ -71,7 +69,6 @@ public class SchedulerTest extends ActionTest {
 		this.onlyOneValidStateAtEachMoment(scheduler);
 
 	}
-
 	@Test
 	public void schedulerWithScheduler() {
 
@@ -95,8 +92,8 @@ public class SchedulerTest extends ActionTest {
 		scheduler.doStep();
 		assertTrue(subScheduler.isFinished());
 
-	}
-*/
+	}*/
+
 	@Test
 	public void withOneStepAction() {
 
@@ -118,7 +115,6 @@ public class SchedulerTest extends ActionTest {
 
 	public Scheduler createAction() {
 		return mock(Scheduler.class);
-		
 	}
 
 	public Foreseeable createAction(int timeToEnd) {

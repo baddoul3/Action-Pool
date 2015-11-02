@@ -28,12 +28,13 @@ public abstract class ActionTest {
 		assertFalse(action.isReady());
 		assertFalse(action.isInProgress());
 		assertTrue(action.isFinished());
+		
 	}
-/*
-	@Test //(expected = ActionFinishedException.class, timeout = 2000)
+
+	@Test (expected = ActionFinishedException.class, timeout = 2000)
 	public void doStepWhileFinishedThrowsException() throws ActionFinishedException {
 		Action action = createAction();	
-			/*while (!action.isFinished()) {
+			while (!action.isFinished()) {
 			try {
 				action.doStep();
 			} catch (ActionFinishedException e) {
@@ -43,6 +44,6 @@ public abstract class ActionTest {
 				
 		assertTrue(action.isFinished());
 		action.doStep();
-	}*/
+	}
 
 }

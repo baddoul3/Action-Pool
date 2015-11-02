@@ -59,4 +59,13 @@ public class Scheduler extends Action {
 		return this.actions.get(0);
 	}
 
+	public Action getNextAction() {
+		return nextAction;
+	}
+
+	public ArrayList<Action> getActions() {
+		return actions;
+	}
+
+	
 }
