@@ -1,47 +1,49 @@
 package Actions;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
-import Action.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+import org.junit.Before;
+import org.junit.Test;
+
+import Action.Action;
+import Action.Foreseeable;
+import Action.OneStepAction;
+import Action.Scheduler;
+
 public class SchedulerTest extends ActionTest {
 
-	Scheduler scheduler;	
+	Scheduler scheduler;
 	Foreseeable action1;
 	Foreseeable action2;
 
 	@Before
 	public void setup() {
-		MockitoAnnotations.initMocks(this);
+
 		action1 = mock(Foreseeable.class);
 		action1.setTimeToEnd(2);
 		action2 = mock(Foreseeable.class);
 		action1.setTimeToEnd(1);
-		scheduler = this.createAction();
-		
+		scheduler = this.createScheduler();
+
 	}
 
 	@Test
 	public void schedulerTest() {
-		scheduler = createAction();
+		scheduler = createScheduler();
 		action1.isReady();
 		when(action1.isReady()).thenReturn(true);
-		
+
 		when(action2.isReady()).thenReturn(true);
-		assertFalse(scheduler.isReady());		
+		assertFalse(scheduler.isReady());
 		scheduler.addAction(action1);
 		scheduler.addAction(action2);
-		
 
 		assertTrue(action1.isReady());
 		assertTrue(action2.isReady());
 
-		scheduler.doStep();		
+		scheduler.doStep();
 		when(action1.isInProgress()).thenReturn(true);
 		when(action2.isReady()).thenReturn(true);
 		assertTrue(action1.isInProgress());
@@ -59,53 +61,45 @@ public class SchedulerTest extends ActionTest {
 		assertTrue(action1.isFinished());
 		assertTrue(action2.isFinished());
 	}
-/*
+
 	@Test
 	public void onlyOneValidStateAtEachMoment() {
-		scheduler = createAction();
-		scheduler = createAction();
+		
+		scheduler = createScheduler();
 		action1 = this.createAction(1);
 		scheduler.addAction(action1);
 		this.onlyOneValidStateAtEachMoment(scheduler);
 
 	}
-	@Test
-	public void schedulerWithScheduler() {
-
-		action1 = mock(Foreseeable.class);
-		action1.setTimeToEnd(2);
-		Scheduler subScheduler = createAction();
-		Scheduler scheduler = createAction();
-		subScheduler.addAction(action1);
-		scheduler.addAction(subScheduler);
-		when(action1.isReady()).thenReturn(true);
-		assertTrue(action1.isReady());
-		assertTrue(subScheduler.isReady());
-		scheduler.doStep();
-		when(action1.isInProgress()).thenReturn(true);
-		assertTrue(action1.isInProgress());
-		assertTrue(subScheduler.isInProgress());
-		assertTrue(scheduler.isInProgress());
-		scheduler.doStep();
-		when(action1.isFinished()).thenReturn(true);
-		assertTrue(action1.isFinished());
-		scheduler.doStep();
-		assertTrue(subScheduler.isFinished());
-
-	}*/
+	
+	  @Test public void schedulerWithScheduler() {
+	  
+	 action1 = mock(Foreseeable.class); action1.setTimeToEnd(2); Scheduler
+	 subScheduler = createScheduler(); Scheduler scheduler = createScheduler();
+	 subScheduler.addAction(action1); scheduler.addAction(subScheduler);
+	 when(action1.isReady()).thenReturn(true); assertTrue(action1.isReady());
+	 assertTrue(subScheduler.isReady()); scheduler.doStep();
+	  when(action1.isInProgress()).thenReturn(true);
+	  assertTrue(action1.isInProgress());
+	  assertTrue(subScheduler.isInProgress());
+	  assertTrue(scheduler.isInProgress()); scheduler.doStep();
+	  when(action1.isFinished()).thenReturn(true);
+	  assertTrue(action1.isFinished()); scheduler.doStep();
+	  assertTrue(subScheduler.isFinished());
+	  
+	  }
+	 
 
 	@Test
-	public void withOneStepAction() {
-
-		scheduler = createScheduler(action1);
-
-		assertTrue(scheduler.isReady());
+	public void with1OneStepAction() {
+		OneStepAction action1 = new OneStepAction();
+		Scheduler scheduler = createScheduler(action1);
+		assertFalse(scheduler.isFinished());
+		assertFalse(action1.isFinished());
 		scheduler.doStep();
-		assertTrue(scheduler.isInProgress());
-		when(action1.isFinished()).thenReturn(true);
+		assertTrue(scheduler.isFinished());
 		assertTrue(action1.isFinished());
 	}
-	
 
 	private Scheduler createScheduler(Action action) {
 		Scheduler scheduler = new Scheduler();
@@ -113,8 +107,15 @@ public class SchedulerTest extends ActionTest {
 		return scheduler;
 	}
 
+	public Scheduler createScheduler() {
+		return new Scheduler();
+	}
 	public Scheduler createAction() {
-		return mock(Scheduler.class);
+		Foreseeable action1 = new Foreseeable(1) ;
+		Scheduler scheduler = new Scheduler();
+		scheduler.addAction(action1);
+		return scheduler;
+		
 	}
 
 	public Foreseeable createAction(int timeToEnd) {

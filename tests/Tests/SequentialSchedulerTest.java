@@ -4,11 +4,10 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+
 
 import Action.*;
-@RunWith(MockitoJUnitRunner.class)
+
 public class SequentialSchedulerTest extends SchedulerTest {
 
 	SequentialScheduler sequentialScheduler;
