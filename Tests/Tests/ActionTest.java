@@ -1,4 +1,4 @@
-package ActionsTests;
+package Tests;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
