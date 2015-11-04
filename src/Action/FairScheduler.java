@@ -4,12 +4,11 @@ public class FairScheduler extends Scheduler {
 	protected boolean remove = false;
 	static int indexAction = 0;
 
+	@Override
 	public Action getNextAction() {
-
 		return this.actions.get(this.actions.indexOf(getCurrentAction()) + 1);
 
 	}
-
 	@Override
 	public void doStep() {
 
@@ -24,8 +23,7 @@ public class FairScheduler extends Scheduler {
 
 					actions.remove(indexAction);
 					indexAction = 0;
-				}
-				else 
+				} else
 					actions.remove(indexAction);
 				remove = true;
 			}
@@ -35,6 +33,10 @@ public class FairScheduler extends Scheduler {
 
 		}
 
+	}
+	
+	public FairScheduler createAction() {
+		return new FairScheduler();
 	}
 
 }

@@ -1,14 +1,13 @@
-package Actions;
+package ActionsTests;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+
 
 import Action.*;
-@RunWith(MockitoJUnitRunner.class)
+
 public class SequentialSchedulerTest extends SchedulerTest {
 
 	SequentialScheduler sequentialScheduler;
@@ -16,7 +15,7 @@ public class SequentialSchedulerTest extends SchedulerTest {
 	@Test
 	public void test() {
 
-		sequentialScheduler = this.createAction();
+		sequentialScheduler = this.createSequentialScheduler();
 		sequentialScheduler.addAction(action1);
 		sequentialScheduler.addAction(action2);
 		when(action1.isReady()).thenReturn(true);
@@ -51,8 +50,15 @@ public class SequentialSchedulerTest extends SchedulerTest {
 		assertTrue(sequentialScheduler.isFinished());
 	}
 
-	public SequentialScheduler createAction() {
+	public SequentialScheduler createSequentialScheduler() {
 		return new SequentialScheduler();
+	}
+	public SequentialScheduler createAction() {
+		Foreseeable action1 = new Foreseeable(1) ;
+		SequentialScheduler sequentialScheduler = new SequentialScheduler();
+		sequentialScheduler.addAction(action1);
+		return sequentialScheduler;
+		
 	}
 
 }

@@ -10,8 +10,8 @@ public class Foreseeable extends Action {
 	public Foreseeable(int timeToEnd) {
 		this.totalTime = timeToEnd;
 		this.remainingTime = timeToEnd;
-	}
-
+	}	
+	
 	@Override
 	public boolean isReady() {
 
