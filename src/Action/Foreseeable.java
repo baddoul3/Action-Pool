@@ -1,8 +1,7 @@
 package Action;
 
-
 public class Foreseeable extends Action {
-	
+
 	protected final int totalTime;
 	protected int remainingTime;
 	protected int timeToEnd;
@@ -46,8 +45,6 @@ public class Foreseeable extends Action {
 		return timeToEnd;
 	}
 
-	
-
 	public void setRemainingTime(int remainingTime) {
 		this.remainingTime = remainingTime;
 	}
@@ -55,7 +52,5 @@ public class Foreseeable extends Action {
 	public void setTimeToEnd(int timeToEnd) {
 		this.timeToEnd = timeToEnd;
 	}
-
-
 
 }

@@ -20,7 +20,7 @@ public class Scheduler extends Action {
 
 		this.isReady = false;
 		Action nextAction = actions.get(0);
-		
+
 		nextAction.doStep();
 		if (nextAction.isFinished())
 			actions.remove(0);
@@ -67,5 +67,4 @@ public class Scheduler extends Action {
 		return actions;
 	}
 
-	
 }
