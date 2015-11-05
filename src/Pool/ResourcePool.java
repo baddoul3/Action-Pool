@@ -1,48 +1,46 @@
 package Pool;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
+import resource.*;
 /**
- * 
  * @author mahroug
- *
- * @param <T>
+ */
+/**
+ * This class represents the resource manager.
+ * Each instance of this class can be specialized for a particular type of resource.
  */
 
-public abstract class ResourcePool<T extends Resource> {
-	protected List<T> availableResources;
-	protected Set<T> notAvailableResources;
+public abstract class ResourcePool <T extends Resource>{
 
-	public ResourcePool(int nbResources) {
+	protected int nbavailableResources;
+	protected List<T> availableResources;
+	protected List<T> givenResources = new ArrayList<T>();
+
+	public ResourcePool(int nbavailableResources){
+		this.nbavailableResources = nbavailableResources;
 		this.availableResources = new ArrayList<T>();
-		this.notAvailableResources = new HashSet<T>();
-		this.createPool(nbResources);
+		for (int i = 0; i < nbavailableResources; i++)
+			this.availableResources.add(create());
 	}
 
-	public T provideResource() throws InterruptedException{
-		if(availableResources.isEmpty()){
-			System.out.println("failed");
-			throw new NoSuchElementException("no resource available");
+	protected abstract T create();
+
+	public T provideResource() throws NoSuchElementException{
+		if (availableResources.isEmpty()){
+			throw new NoSuchElementException();
 		}
-		System.out.println("success");
 		T resource = availableResources.get(0);
-		notAvailableResources.add(resource);
-		availableResources.remove(resource);
+		givenResources.add(resource);
+		availableResources.remove(0);
 		return resource;
 	}
 
-	public void freeResource(Resource resource){
-		if(notAvailableResources.contains(resource)){
-			availableResources.add((T) resource);
-			notAvailableResources.remove(resource);	
+	public void freeResource(T resource){
+		if (givenResources.contains(resource)){
+			availableResources.add(resource);
+			givenResources.remove(resource);
 		}
+		else
+			throw new IllegalArgumentException();
 	}
-
-	protected abstract void createPool(int nbResources);
-
-	public abstract String description();	
 }
-
 
