@@ -28,4 +28,3 @@ public class Pool {
 		System.out.println("Finished in "+nbSteps+" steps");
 	}
 }
-

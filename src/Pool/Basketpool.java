@@ -6,13 +6,14 @@ import resource.*;
 /**
  * This class is a particular type of resource
  */
-public class CubiclePool extends ResourcePool<Cubicle>{
+public class Basketpool extends ResourcePool<Basket>{
 
-	public CubiclePool(int nbResources) {
+	public Basketpool(int nbResources) {
 		super(nbResources);
 	}
 
-	protected Cubicle create() {
-		return new Cubicle();
+	protected Basket create() {
+		return new Basket();
 	}
+
 }

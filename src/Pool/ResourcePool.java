@@ -2,7 +2,7 @@ package Pool;
 import java.util.*;
 import resource.*;
 /**
- * @author mahroug
+ * @author mahroug + mamane
  */
 /**
  * This class represents the resource manager.
@@ -43,4 +43,3 @@ public abstract class ResourcePool <T extends Resource>{
 			throw new IllegalArgumentException();
 	}
 }
-
