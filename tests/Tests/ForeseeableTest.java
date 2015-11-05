@@ -1,43 +1,54 @@
-package Tests;
+package Actions;
 
 import static org.junit.Assert.*;
-
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import Action.*;
-
-
-public class ForeseeableTest extends ActionTest{
-
-	public  Foreseeable createAction() {
-		return new Foreseeable(2);	
-	}
+@RunWith(MockitoJUnitRunner.class)
+public class ForeseeableTest extends ActionTest {
 	
+	Foreseeable action;	
+	
+
+	@Before
+	public void setup() {
+		action = this.createAction();
+
+	}
+
 	@Test
 	public void foreseeableAction() {
-	Foreseeable action =  this.createAction();
-	// 2 steps remaining
-	
-	action.getTotalTime();
-	assertTrue(action.isReady());
-	assertFalse(action.isInProgress());
-	assertFalse(action.isFinished());
-	action.doStep();
-	// 1 step remaining
-	assertFalse(action.isReady());
-	assertTrue(action.isInProgress());
-	assertFalse(action.isFinished());
-	action.doStep();
-	// 0 step remaining
-	assertFalse(action.isReady());
-	assertFalse(action.isInProgress());
-	assertTrue(action.isFinished());
+		
+		// 2 steps remaining
+		action.setTimeToEnd(2);			
+		assertTrue(action.isReady());
+		assertFalse(action.isInProgress());
+		assertFalse(action.isFinished());
+		action.doStep();
+		// 1 step remaining
+		
+		assertFalse(action.isReady());
+		assertTrue(action.isInProgress());
+		assertFalse(action.isFinished());
+		action.doStep();
+		//0 step remaining
+		assertFalse(action.isReady());
+		assertFalse(action.isInProgress());
+		assertTrue(action.isFinished());
 	}
-	
+
 	@Test
-	public void onlyOneValidStateAtEachMomentForForeseebleAction() {
-//	onlyOneValidStateAtEachMoment(this.createAction());
+	public void onlyOneValidStateAtEachMomentFor() {
+		onlyOneValidStateAtEachMoment(this.createAction());
 	}
-	
-	
+
+	public Foreseeable createAction() {
+		return new Foreseeable(2);
+		
+
+	}
+
 }
