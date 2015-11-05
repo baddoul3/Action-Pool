@@ -1,5 +1,6 @@
 package Action;
 
+
 public class Foreseeable extends Action {
 
 	protected final int totalTime;
@@ -16,7 +17,9 @@ public class Foreseeable extends Action {
 
 		return remainingTime == totalTime;
 	}
-
+	
+// redefinition of methods: doStep, inProgress, isFinished
+	
 	@Override
 	public void doStep() {
 		remainingTime--;
