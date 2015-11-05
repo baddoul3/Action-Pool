@@ -1,5 +1,7 @@
 package Action;
 
+import java.util.ArrayList;
+
 public class OneStepAction extends Action {
 	protected boolean isInitialized = false;
 	protected boolean isReady = true;

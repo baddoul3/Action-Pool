@@ -1,48 +1,42 @@
 package Pool;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
-/**
- * 
- * @author mahroug
- *
- * @param <T>
- */
 
-public abstract class ResourcePool<T extends Resource> {
-	protected List<T> availableResources;
-	protected Set<T> notAvailableResources;
+import resource.Resource;
 
-	public ResourcePool(int nbResources) {
-		this.availableResources = new ArrayList<T>();
-		this.notAvailableResources = new HashSet<T>();
-		this.createPool(nbResources);
+public abstract class ResourcePool <T extends Resource>{
+	
+	protected int nbResources;
+	protected List<T> resources;
+	protected List<T> usedResources = new ArrayList<T>();
+	
+	public ResourcePool(int nbResources){
+		this.nbResources = nbResources;
+		this.resources = new ArrayList<T>();
+		for (int i = 0; i < nbResources; i++)
+			this.resources.add(create());
 	}
-
-	public T provideResource() throws InterruptedException{
-		if(availableResources.isEmpty()){
-			System.out.println("failed");
-			throw new NoSuchElementException("no resource available");
+	
+	protected abstract T create();
+	
+	public T provideResource(){
+		if (!resources.isEmpty()){
+			T tmp = resources.get(0);
+			usedResources.add(tmp);
+			resources.remove(0);
+			return tmp;
 		}
-		System.out.println("success");
-		T resource = availableResources.get(0);
-		notAvailableResources.add(resource);
-		availableResources.remove(resource);
-		return resource;
+		throw new NoSuchElementException();
 	}
-
-	public void freeResource(Resource resource){
-		if(notAvailableResources.contains(resource)){
-			availableResources.add((T) resource);
-			notAvailableResources.remove(resource);	
+	
+	public void freeResource(T resource){
+		if (usedResources.contains(resource)){
+			resources.add(resource);
+			usedResources.remove(resource);
 		}
+		else
+			throw new IllegalArgumentException();
 	}
-
-	protected abstract void createPool(int nbResources);
-
-	public abstract String description();	
 }
-
-
