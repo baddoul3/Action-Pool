@@ -6,7 +6,7 @@ public class Foreseeable extends Action {
 	protected final int totalTime;
 	protected int remainingTime;
 	protected int timeToEnd;
-
+/*class representative actions are not complete until after a parameterizable number of invocation*/
 	public Foreseeable(int timeToEnd) {
 		this.totalTime = timeToEnd;
 		this.remainingTime = timeToEnd;
