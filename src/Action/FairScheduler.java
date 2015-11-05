@@ -1,11 +1,13 @@
 package Action;
 
+import Pool.Swimmer;
+
 public class FairScheduler extends Scheduler {
 	protected boolean remove = false;
 	static int indexAction = 0;
 
+	@Override
 	public Action getNextAction() {
-
 		return this.actions.get(this.actions.indexOf(getCurrentAction()) + 1);
 
 	}
@@ -24,8 +26,7 @@ public class FairScheduler extends Scheduler {
 
 					actions.remove(indexAction);
 					indexAction = 0;
-				}
-				else 
+				} else
 					actions.remove(indexAction);
 				remove = true;
 			}
@@ -35,6 +36,10 @@ public class FairScheduler extends Scheduler {
 
 		}
 
+	}
+
+	public void addAction(Swimmer swimmer) {
+		super.addAction(swimmer);
 	}
 
 }

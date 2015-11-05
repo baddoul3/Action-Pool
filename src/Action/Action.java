@@ -1,10 +1,6 @@
 package Action;
 
 public abstract class Action {
-
-	protected int TotalTime;
-	protected int remainingTime;
-	
 	
 
 	public abstract boolean isReady();
