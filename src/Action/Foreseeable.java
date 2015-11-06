@@ -1,12 +1,17 @@
 package Action;
 
+<<<<<<< HEAD
+=======
+
+public class Foreseeable extends Action {
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 
 public class Foreseeable extends Action {
 	
 	protected final int totalTime;
 	protected int remainingTime;
 	protected int timeToEnd;
-
+/*class representative actions are not complete until after a parameterizable number of invocation*/
 	public Foreseeable(int timeToEnd) {
 		this.totalTime = timeToEnd;
 		this.remainingTime = timeToEnd;
@@ -17,7 +22,9 @@ public class Foreseeable extends Action {
 
 		return remainingTime == totalTime;
 	}
-
+	
+// redefinition of methods: doStep, inProgress, isFinished
+	
 	@Override
 	public void doStep() {
 		remainingTime--;

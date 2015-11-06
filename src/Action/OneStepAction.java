@@ -10,7 +10,9 @@ public class OneStepAction extends Action {
 	public boolean isReady() {
 		return isReady;
 	}
-
+/*each call doStep () represents the passage of a unit of time during
+ *  which one and only one action can advance one 
+ *  and only one step */
 	public void doStep() {
 
 		this.isReady = false;

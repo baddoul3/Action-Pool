@@ -1,4 +1,5 @@
 package resource;
+<<<<<<< HEAD
 
 import java.util.NoSuchElementException;
 
@@ -6,6 +7,11 @@ import Action.*;
 import Pool.*;
 import resource.Resource;
 import resource.ResourcefulUser;
+=======
+import java.util.NoSuchElementException;
+import Action.Action;
+import Pool.ResourcePool;
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 
 public class TakeResourceAction <T extends Resource> extends Action{
 	
@@ -14,7 +20,10 @@ public class TakeResourceAction <T extends Resource> extends Action{
 	protected ResourcePool<T> resourcePool;
 	protected ResourcefulUser<T> resourcefulUser;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 	public TakeResourceAction(ResourcePool<T> resourcePool, 
 			ResourcefulUser<T> resourcefulUser) {
 		this.resourcefulUser = resourcefulUser;
@@ -24,6 +33,7 @@ public class TakeResourceAction <T extends Resource> extends Action{
 	public ResourcePool<T> getResourcePool(){
 		return resourcePool;
 	}
+<<<<<<< HEAD
 
 	/**
 	* tell if the action is ready
@@ -44,6 +54,17 @@ public class TakeResourceAction <T extends Resource> extends Action{
 	}
 
 	@Override
+=======
+	
+	public boolean isReady() {
+		return isReady;
+	}
+	
+	public boolean isFinished() {
+		return isFinished;
+	}
+	
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 	public void doStep() {
 		try {
 			T res = resourcePool.provideResource();
@@ -56,9 +77,13 @@ public class TakeResourceAction <T extends Resource> extends Action{
 		}
 	}
 
+<<<<<<< HEAD
 	@Override
 	public boolean isInProgress() {
 		// TODO Auto-generated method stub
+=======
+	public boolean isInProgress() {
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 		return false;
 	}
 }

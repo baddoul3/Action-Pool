@@ -1,14 +1,27 @@
 package Pool;
+<<<<<<< HEAD
 
 import Action.FairScheduler;
 
+=======
+import Action.*;
+/**
+ * @author mahroug
+ */
+/**
+ * This class allows to act the swimmers in order to simulate the functioning of a swimming pool
+ */
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 public class Pool {
 	public static void main(String args[]){
 		Basketpool baskets = new Basketpool(6);
 		CubiclePool cubicles = new CubiclePool(3);
 		FairScheduler s = new FairScheduler();
 	
+<<<<<<< HEAD
 		
+=======
+>>>>>>> dbfd4899f89734150dccf01d3fa58abd58ac7b88
 		s.addAction(new Swimmer("Camille", baskets, cubicles, 6, 4, 8));
 		s.addAction(new Swimmer("Lois", baskets, cubicles, 2, 10, 4));
 		s.addAction(new Swimmer("Mae", baskets, cubicles, 10, 18, 10));

@@ -1,15 +1,12 @@
-/**
- * 
- */
+  
 package Pool;
 
 import static org.junit.Assert.*;
-import Action.*;
-import org.junit.Assert;
-import org.junit.Test;
 
+import org.junit.*;
 /**
  * @author negmi
+ *
  *
  */
 public class BasketTest {
@@ -21,6 +18,7 @@ public class BasketTest {
 		assertEquals("basket description", b.description());
 	}
 	
+	@Test
 	public void toStringTest(){
 		assertEquals("basket", b.toString());  
 	}
